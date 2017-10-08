@@ -89,7 +89,7 @@ var observationRecorder = {
     			top.traps.push.apply(top.traps, observes);
     		} else {
     			for(var i =0, len = observes.length; i < len; i++) {
-                    this.observe(observes[i][0],observes[i][1]);
+                    this.add(observes[i][0],observes[i][1]);
     			}
     		}
     	}
