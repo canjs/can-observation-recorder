@@ -19,7 +19,7 @@ in a value being read.
 
     stop()   // Stops recording ObservationRecorder.add calls and
              // returns an ObservationRecord representing
-             // the Observation.add calls.
+             // the ObservationRecorder.add calls.
 
     add(obj, [key]) // Signal that an observable value was read.
 

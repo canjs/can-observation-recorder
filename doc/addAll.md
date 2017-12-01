@@ -3,7 +3,7 @@
 
 @description Specify how to observe a value that is currently being read with multiple bindings.
 
-@signature `Observation.addAll(observes)`
+@signature `ObservationRecorder.addMany(observes)`
 
 
 The same as [can-observation-recorder.add] but takes an array of `[object, event]` arrays.
@@ -12,7 +12,7 @@ The following indicates to [can-reflect/observe.onKeyValue] `obj1` and `obj2` an
 [can-reflect/observe.onValue] `value`:
 
 ```js
-ObservationRecorder.addAll([
+ObservationRecorder.addMany([
     [obj1, "prop1"],
     [value],
     [obj2, "prop2"]

@@ -17,7 +17,7 @@ ObservationRecorder.stop() //-> observationRecord
 `.start()` adds a new observation record to the top stack.  So if there are multiple calls to
 `.start()` before `.stop()`, only the top of the stack will gain the dependencies. The following shows that
 `obj2` is ONLY added to the record at the top of the stack: `record2`.  Once `record2` is popped off,
-`record1` receives `Observation.add` calls.
+`record1` receives `ObservationRecorder.add` calls.
 
 ```js
 ObservationRecorder.start();
