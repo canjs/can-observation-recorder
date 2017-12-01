@@ -1,6 +1,6 @@
 {
   "name": "can-observation-recorder",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Records observations between two points in time",
   "homepage": "http://canjs.com",
   "repository": {
