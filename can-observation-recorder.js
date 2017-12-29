@@ -9,18 +9,22 @@ var stack = [];
 var ObservationRecorder = {
     stack: stack,
     start: function(){
-        stack.push({
+    	var deps = {
             keyDependencies: new Map(),
             valueDependencies: new Set(),
 
             // `traps` and `ignore` are here only for performance
             // reasons. They work with `ObservationRecorder.ignore` and `ObservationRecorder.trap`.
             traps: null,
-            ignore: 0
-        });
+            ignore: 0    		
+    	};
+    	
+        stack.push(deps);
+
+        return deps;
     },
     stop: function() {
-        return stack.pop();
+    	return stack.pop();
     },
 
     add: function(obj, event) {
