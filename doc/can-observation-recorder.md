@@ -15,7 +15,9 @@ in a value being read.
 
 ```js
 {
-    start()  // Starts recording ObservationRecorder.add calls.
+    start()  // Starts recording ObservationRecorder.add calls and
+             // returns an ObservationRecord representing
+             // the ObservationRecorder.add calls.
 
     stop()   // Stops recording ObservationRecorder.add calls and
              // returns an ObservationRecord representing
