@@ -8,6 +8,8 @@
 Start recording calls to [can-observation-recorder.add] and creates an
 observation record that will be returned by [can-observation-recorder.stop].
 
+Start recording also returns the new observation record.
+
 ```js
 ObservationRecorder.start()
 //... some code ...
@@ -38,3 +40,13 @@ var record2 = ObservationRecorder.stop();
 record1 //-> {valueDependencies: Set[obj2]}
 record2 //-> {valueDependencies: Set[obj1, obj3]}
 ```
+
+
+@return {Object} An observation record with the following structure:
+
+  ```js
+  {
+      keyDependencies: Map<observable,Set<key>>
+      valueDependencies: Set<observable>
+  }
+  ```
