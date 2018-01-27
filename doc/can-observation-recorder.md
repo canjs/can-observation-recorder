@@ -204,3 +204,11 @@ information about what this means.
 
 It keeps a `stack` of _observation records_.  `.start()` pushes to that stack. `.add()` adds values to the
 top of the stack. `.stop()` pops the stack and returns the former top of the stack.
+
+[How it works: can-observation and can-observation-recorder](https://www.youtube.com/watch?v=UIhB-zXR5Yg)
+covers how `can-observation-recorder` works.
+
+[How it works: can-observation and can-observation-recorder](https://www.youtube.com/watch?v=UIhB-zXR5Yg)
+covers how `can-observation` works.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/UIhB-zXR5Yg" frameborder="0" allowfullscreen></iframe>
