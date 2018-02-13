@@ -9,8 +9,8 @@
 being added.  Notice that the observation record returned by [can-observation-recorder.stop]
 has no dependencies:
 
-```js
-var fn = ObservationRecorder.ignore(function(){
+```javascript
+const fn = ObservationRecorder.ignore(function(){
   // This will be ignored
   ObservationRecorder.add(obj, "prop1");
 });
@@ -42,10 +42,10 @@ template.  Templates manage observability themselves.  So `can-stache` returns r
 Another common place that often needs to be ignored is complex initialization code.  Say for example, you had a setter
 that created an object and then read some of its properties like:
 
-```js
+```javascript
 {
     set prop(value){
-        var thing = new Thing(value);
+        const thing = new Thing(value);
         if(!thing.someObservableProperty) {
             thing.someObservableProperty = "VALUE";
         }

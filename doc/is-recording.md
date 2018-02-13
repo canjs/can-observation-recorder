@@ -9,7 +9,7 @@ and [can-observation-recorder.stop] call.
 Return if the current code exists between a [can-observation-recorder.start]
 and [can-observation-recorder.stop] call.
 
-```js
+```javascript
 ObservationRecorder.isRecording() //-> false
 
 ObservationRecorder.start()
@@ -29,18 +29,18 @@ setup their cached value when being read within something that is likely to bind
 
 For example, [can-observation]'s `.get` uses this to preemptively bind to itself if its going to be bound later:
 
-```js
+```javascript
 {
-	get: function(){
-	    if(ObservationRecord.isRecording() && !this.bound) {
-	        temporarilyBind(this);
-	    }
-	    if(this.bound) {
-	        return this.cachedValue;
-	    } else {
-	        // run the function
-	        return this.fn.call(this.context);
-	    }
-	}
+  get: function(){
+      if(ObservationRecord.isRecording() && !this.bound) {
+          temporarilyBind(this);
+      }
+      if(this.bound) {
+          return this.cachedValue;
+      } else {
+          // run the function
+          return this.fn.call(this.context);
+      }
+  }
 }
 ```

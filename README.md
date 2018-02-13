@@ -5,15 +5,15 @@
 Records observations between two points in time.
 
 
-```js
-var foo = {};
-var bar = {};
+```javascript
+const foo = {};
+const bar = {};
 observationRecorder.start();
 
 observationRecorder.add(foo, "event1");
 observationRecorder.add(bar);
 
-var dependencies = observationRecorder.stop();
+const dependencies = observationRecorder.stop();
 dependencies //-> {
 //    keyDependencies: Map{
 //      [foo]: Set["event1"]

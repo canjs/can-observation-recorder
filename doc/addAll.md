@@ -11,7 +11,7 @@ The same as [can-observation-recorder.add] but takes an array of `[object, event
 The following indicates to [can-reflect/observe.onKeyValue] `obj1` and `obj2` and
 [can-reflect/observe.onValue] `value`:
 
-```js
+```javascript
 ObservationRecorder.addMany([
     [obj1, "prop1"],
     [value],

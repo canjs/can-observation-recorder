@@ -8,9 +8,9 @@
 Stop recording calls to [can-observation-recorder.add] and returns an
 observation record.
 
-```js
+```javascript
 ObservationRecorder.start()
-//... some code ...
+//... some code /* ... */
 ObservationRecorder.stop() //-> observationRecord
 ```
 

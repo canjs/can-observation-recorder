@@ -36,18 +36,18 @@ in a value being read.
 
 - It allows observable values, when read, to specify how to listen to changes in the
   value being read.  
-  ```js
+  ```javascript
   ObservationRecorder.add(map, "value")
 
   ObservationRecorder.add(simpleValue)
   ```
 - Record all calls to `ObservationRecorder.add` between [can-observation-recorder.start] and
   [can-observation-recorder.stop]:
-  ```js
+  ```javascript
   ObservationRecorder.start();
   ObservationRecorder.add(person, "age")
   ObservationRecorder.add(fullName)
-  var observationRecord = ObservationRecorder.stop();
+  const observationRecord = ObservationRecorder.stop();
   observationRecord //-> {
   //  keyDependencies:   Map{ person: Set[age] },
   //  valueDependencies: Set[fullName]
@@ -81,29 +81,29 @@ with one or more values.
 If an object has observable key-value pairs, and a key was read through its `.get` method, it might
 implement `.get` as follows:
 
-```js
-var observableKeyValues = {
+```javascript
+const observableKeyValues = {
     _data: {},
     get: function(key) {
         ObservationRecorder.add(this,key);
         return this._data[key];
     },
-    ...
-}
+    // ...
+};
 ```
 
 `ObservationRecorder.add(observable, key)` called with two arguments indicates that the `observable` argument's [can-symbol/symbols/onKeyValue] will
 be called with the `key` argument.  In the case that `observableKeyValues.get("prop")` was called, [can-observation] would call:
 
-```js
+```javascript
 observableKeyValues[canSymbol.for("can.onKeyValue")]("prop", updateObservation, "notify");
 ```
 
 So not only __MUST__ observables call [can-observation-recorder.add], they also must have the corresponding observable symbols implemented. For `observableKeyValues`, this might look like:
 
-```js
-var observableKeyValues = {
-    ...
+```javascript
+const observableKeyValues = {
+    // ...
     handlers: new KeyTree([Object,Object,Array]),
     [canSymbol.for("can.onKeyValue")]: function(key, handler, queue) {
         this.handlers.add([key,queue || "mutate", handler]);
@@ -111,7 +111,7 @@ var observableKeyValues = {
     [canSymbol.for("can.offKeyValue")]: function(key, handler, queue) {
         this.handlers.delete([key, queue || "mutate", handler]);
     }
-}
+};
 ```
 
 [can-event-queue] has utilities that make this pattern easier. Also checkout [can-key-tree] and [can-queues].
@@ -121,28 +121,28 @@ var observableKeyValues = {
 If an observable represents a single value, and that value is read through a `.value` property, it might
 implement that property as follows:
 
-```js
-var observableValue = {
+```javascript
+const observableValue = {
     _value: {},
     get value() {
         ObservationRecorder.add(this);
         return this._value;
     },
-    ...
-}
+    // ...
+};
 ```
 
 `ObservationRecorder.add(observable)` called with one arguments indicates that the `observable` argument's [can-symbol/symbols/onValue] will be called.  In the case that `observableKeyValues.value` was read, [can-observation] would call:
 
-```js
+```javascript
 observableValue[canSymbol.for("can.onValue")](updateObservation, "notify");
 ```
 
 So not only __MUST__ observables call [can-observation-recorder.add], they also must have the corresponding observable symbols implemented. For `observableValue`, this might look like:
 
-```js
-var observableValue = {
-    ...
+```javascript
+const observableValue = {
+    // ...
     handlers: new KeyTree([Object,Array]),
     [canSymbol.for("can.onValue")]: function(handler, queue) {
         this.handlers.add([queue || "mutate", handler]);
@@ -150,7 +150,7 @@ var observableValue = {
     [canSymbol.for("can.offValue")]: function(handler, queue) {
         this.handlers.delete([queue || "mutate", handler]);
     }
-}
+};
 ```
 
 [can-event-queue] has utilities that make this pattern easier. Also checkout [can-key-tree] and [can-queues].
@@ -167,7 +167,7 @@ virtual DOM.  Maybe you've got some cool uses too!
 
 Use `.start()` and `.stop()` to track all `.add(observation [,key] )` calls between two points as follows:
 
-```js
+```javascript
 ObservationRecorder.start();
 
 ObservationRecorder.add(observableKeyValues, "propA");
@@ -177,7 +177,7 @@ ObservationRecorder.add(map, "propC");
 ObservationRecorder.add(observableValue);
 ObservationRecorder.add(fullNameCompute);
 
-var observationRecord = ObservationRecorder.stop();
+const observationRecord = ObservationRecorder.stop();
 ```
 
 `observationRecord` would contain the following:
