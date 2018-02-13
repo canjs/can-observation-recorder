@@ -44,7 +44,7 @@ record2 //-> {valueDependencies: Set[obj1, obj3]}
 
 @return {Object} An observation record with the following structure:
 
-  ```js
+  ```
   {
       keyDependencies: Map<observable,Set<key>>
       valueDependencies: Set<observable>

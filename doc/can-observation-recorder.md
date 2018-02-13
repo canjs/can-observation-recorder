@@ -13,7 +13,7 @@ in a value being read.
 
 `can-observation-recorder` exports an object with the following methods:
 
-```js
+```
 {
     start()  // Starts recording ObservationRecorder.add calls and
              // returns an ObservationRecord representing
@@ -83,7 +83,7 @@ implement `.get` as follows:
 
 ```js
 var observableKeyValues = {
-    _data: {}
+    _data: {},
     get: function(key) {
         ObservationRecorder.add(this,key);
         return this._data[key];
@@ -103,7 +103,7 @@ So not only __MUST__ observables call [can-observation-recorder.add], they also 
 
 ```js
 var observableKeyValues = {
-    ...,
+    ...
     handlers: new KeyTree([Object,Object,Array]),
     [canSymbol.for("can.onKeyValue")]: function(key, handler, queue) {
         this.handlers.add([key,queue || "mutate", handler]);
@@ -123,8 +123,8 @@ implement that property as follows:
 
 ```js
 var observableValue = {
-    _value: {}
-    get value: function() {
+    _value: {},
+    get value() {
         ObservationRecorder.add(this);
         return this._value;
     },
@@ -142,7 +142,7 @@ So not only __MUST__ observables call [can-observation-recorder.add], they also 
 
 ```js
 var observableValue = {
-    ...,
+    ...
     handlers: new KeyTree([Object,Array]),
     [canSymbol.for("can.onValue")]: function(handler, queue) {
         this.handlers.add([queue || "mutate", handler]);
@@ -182,7 +182,7 @@ var observationRecord = ObservationRecorder.stop();
 
 `observationRecord` would contain the following:
 
-```js
+```
 {
     keyDependencies: Map{
         [observableKeyValues]: Set["propA", "propB"],
