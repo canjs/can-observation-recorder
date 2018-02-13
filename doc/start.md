@@ -10,7 +10,7 @@ observation record that will be returned by [can-observation-recorder.stop].
 
 Start recording also returns the new observation record.
 
-```javascript
+```js
 ObservationRecorder.start()
 //... some code /* ... */
 ObservationRecorder.stop() //-> observationRecord
@@ -21,16 +21,16 @@ ObservationRecorder.stop() //-> observationRecord
 `obj2` is ONLY added to the record at the top of the stack: `record2`.  Once `record2` is popped off,
 `record1` receives `ObservationRecorder.add` calls.
 
-```javascript
+```js
 ObservationRecorder.start();
 
 ObservationRecorder.add(obj1)
 
-    ObservationRecorder.start();
+ObservationRecorder.start();
 
-    ObservationRecorder.add(obj2)
+ObservationRecorder.add(obj2)
 
-    const record1 = ObservationRecorder.stop();
+const record1 = ObservationRecorder.stop();
 
 ObservationRecorder.add(obj3);
 

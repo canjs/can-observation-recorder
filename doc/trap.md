@@ -7,7 +7,7 @@
 Trap all observations until the `untrap` function is called. The state of
 traps prior to `ObservationRecorder.trap()` will be restored when `untrap()` is called.
 
-```javascript
+```js
 const untrap = ObservationRecorder.trap();
 
 ObservationRecorder.add(obj, "prop1");

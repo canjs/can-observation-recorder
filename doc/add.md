@@ -9,7 +9,7 @@
 Signals that an object should be observed. Adds the observable being read to
 the top of the stack.
 
-```javascript
+```js
 // for objects with observable properties:
 ObservationRecorder.add(object, "prop");
 

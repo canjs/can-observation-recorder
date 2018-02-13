@@ -5,7 +5,7 @@
 Records observations between two points in time.
 
 
-```javascript
+```js
 const foo = {};
 const bar = {};
 observationRecorder.start();
