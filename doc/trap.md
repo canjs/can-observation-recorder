@@ -10,10 +10,10 @@ traps prior to `ObservationRecorder.trap()` will be restored when `untrap()` is 
 ```js
 const untrap = ObservationRecorder.trap();
 
-ObservationRecorder.add(obj, "prop1");
+ObservationRecorder.add( obj, "prop1" );
 
 const traps = untrap();
-console.log(traps[0].obj === obj); // -> true
+console.log( traps[ 0 ].obj === obj ); // -> true
 ```
 
 @return {can-observation-recorder.getTrapped} A function to get the trapped observations.

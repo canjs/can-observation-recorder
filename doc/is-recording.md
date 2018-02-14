@@ -10,11 +10,11 @@ Return if the current code exists between a [can-observation-recorder.start]
 and [can-observation-recorder.stop] call.
 
 ```js
-ObservationRecorder.isRecording() //-> false
+ObservationRecorder.isRecording(); //-> false
 
-ObservationRecorder.start()
-ObservationRecorder.isRecording() //-> true
-ObservationRecorder.stop()
+ObservationRecorder.start();
+ObservationRecorder.isRecording(); //-> true
+ObservationRecorder.stop();
 ```
 
 @return {Boolean} True if something is in the process of recording observes.
@@ -31,15 +31,16 @@ For example, [can-observation]'s `.get` uses this to preemptively bind to itself
 
 ```js
 {
-	get: function(){
-		if(ObservationRecord.isRecording() && !this.bound) {
-			temporarilyBind(this);
+	get: function() {
+		if ( ObservationRecord.isRecording() && !this.bound ) {
+			temporarilyBind( this );
 		}
-		if(this.bound) {
+		if ( this.bound ) {
 			return this.cachedValue;
 		} else {
+
 			// run the function
-			return this.fn.call(this.context);
+			return this.fn.call( this.context );
 		}
 	}
 }

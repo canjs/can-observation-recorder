@@ -9,9 +9,10 @@ Stop recording calls to [can-observation-recorder.add] and returns an
 observation record.
 
 ```js
-ObservationRecorder.start()
+ObservationRecorder.start();
+
 //... some code /* ... */
-ObservationRecorder.stop() //-> observationRecord
+ObservationRecorder.stop(); //-> observationRecord
 ```
 
 @return {Object} An observation record with the following structure:

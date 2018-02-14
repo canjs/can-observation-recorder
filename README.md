@@ -10,11 +10,11 @@ const foo = {};
 const bar = {};
 observationRecorder.start();
 
-observationRecorder.add(foo, "event1");
-observationRecorder.add(bar);
+observationRecorder.add( foo, "event1" );
+observationRecorder.add( bar );
 
 const dependencies = observationRecorder.stop();
-dependencies //-> {
+dependencies; //-> {
 //    keyDependencies: Map{
 //      [foo]: Set["event1"]
 //    },
