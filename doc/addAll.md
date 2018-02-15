@@ -12,11 +12,11 @@ The following indicates to [can-reflect/observe.onKeyValue] `obj1` and `obj2` an
 [can-reflect/observe.onValue] `value`:
 
 ```js
-ObservationRecorder.addMany([
-    [obj1, "prop1"],
-    [value],
-    [obj2, "prop2"]
-]);
+ObservationRecorder.addMany( [
+	[ obj1, "prop1" ],
+	[ value ],
+	[ obj2, "prop2" ]
+] );
 ```
 
 @param {Array} observes An array of `[object, event]` "observable" arrays. If an "observable" array only has one item,

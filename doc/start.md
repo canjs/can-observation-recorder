@@ -11,9 +11,10 @@ observation record that will be returned by [can-observation-recorder.stop].
 Start recording also returns the new observation record.
 
 ```js
-ObservationRecorder.start()
-//... some code ...
-ObservationRecorder.stop() //-> observationRecord
+ObservationRecorder.start();
+
+//... some code /* ... */
+ObservationRecorder.stop(); //-> observationRecord
 ```
 
 `.start()` adds a new observation record to the top stack.  So if there are multiple calls to
@@ -24,27 +25,27 @@ ObservationRecorder.stop() //-> observationRecord
 ```js
 ObservationRecorder.start();
 
-ObservationRecorder.add(obj1)
+ObservationRecorder.add( obj1 );
 
-    ObservationRecorder.start();
+ObservationRecorder.start();
 
-    ObservationRecorder.add(obj2)
+ObservationRecorder.add( obj2 );
 
-    var record1 = ObservationRecorder.stop();
+const record1 = ObservationRecorder.stop();
 
-ObservationRecorder.add(obj3);
+ObservationRecorder.add( obj3 );
 
-var record2 = ObservationRecorder.stop();
+const record2 = ObservationRecorder.stop();
 
 
-record1 //-> {valueDependencies: Set[obj2]}
-record2 //-> {valueDependencies: Set[obj1, obj3]}
+record1; //-> {valueDependencies: Set[obj2]}
+record2; //-> {valueDependencies: Set[obj1, obj3]}
 ```
 
 
 @return {Object} An observation record with the following structure:
 
-  ```js
+  ```
   {
       keyDependencies: Map<observable,Set<key>>
       valueDependencies: Set<observable>

@@ -11,10 +11,10 @@ the top of the stack.
 
 ```js
 // for objects with observable properties:
-ObservationRecorder.add(object, "prop");
+ObservationRecorder.add( object, "prop" );
 
 // for observables that represent a single value:
-ObservationRecorder.add(object);
+ObservationRecorder.add( object );
 ```
 
 @param {Object} object An observable object which is being observed.

@@ -10,16 +10,17 @@ being added.  Notice that the observation record returned by [can-observation-re
 has no dependencies:
 
 ```js
-var fn = ObservationRecorder.ignore(function(){
-  // This will be ignored
-  ObservationRecorder.add(obj, "prop1");
-});
+const fn = ObservationRecorder.ignore( function() {
+
+	// This will be ignored
+	ObservationRecorder.add( obj, "prop1" );
+} );
 
 OvervationRecorder.start();
 fn();
-ObservationRecorder.stop() //-> {
+ObservationRecorder.stop(); //-> {
 //   keyDependencies: {},
-//   valueDependencies: {}   
+//   valueDependencies: {}
 // }
 ```
 
@@ -44,13 +45,13 @@ that created an object and then read some of its properties like:
 
 ```js
 {
-    set prop(value){
-        var thing = new Thing(value);
-        if(!thing.someObservableProperty) {
-            thing.someObservableProperty = "VALUE";
-        }
-        return thing;
-    }
+	set prop( value ) {
+		const thing = new Thing( value );
+		if ( !thing.someObservableProperty ) {
+			thing.someObservableProperty = "VALUE";
+		}
+		return thing;
+	}
 }
 ```
 
