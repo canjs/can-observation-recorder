@@ -12,13 +12,14 @@ var ObservationRecorder = {
     	var deps = {
             keyDependencies: new Map(),
             valueDependencies: new Set(),
+						childDependencies: new Set(),
 
             // `traps` and `ignore` are here only for performance
             // reasons. They work with `ObservationRecorder.ignore` and `ObservationRecorder.trap`.
             traps: null,
-            ignore: 0    		
+            ignore: 0
     	};
-    	
+
         stack.push(deps);
 
         return deps;
@@ -62,6 +63,12 @@ var ObservationRecorder = {
     		}
     	}
     },
+		created: function(obs){
+			var top = stack[stack.length - 1];
+			if(top) {
+				top.childDependencies.add(obs);
+			}
+		},
     ignore: function(fn){
     	return function(){
     		if (stack.length) {
