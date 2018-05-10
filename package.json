@@ -38,8 +38,7 @@
     ]
   },
   "dependencies": {
-    "can-namespace": "^1.0.0",
-    "can-symbol": "^1.6.1"
+    "can-namespace": "^1.0.0"
   },
   "devDependencies": {
     "jshint": "^2.9.1",
