@@ -1,10 +1,13 @@
 var namespace = require("can-namespace");
+var canSymbol = require("can-symbol");
 
 // Contains stack of observation records created by pushing with `.start`
 // and popping with `.stop()`.
 // The top of the stack is the "target" observation record - the record that calls
 // to `ObservationRecorder.add` get added to.
 var stack = [];
+
+var addParentSymbol = canSymbol.for("can.addParent");
 
 var ObservationRecorder = {
     stack: stack,
@@ -67,6 +70,9 @@ var ObservationRecorder = {
 			var top = stack[stack.length - 1];
 			if(top) {
 				top.childDependencies.add(obs);
+				if(obs[addParentSymbol]) {
+					obs[addParentSymbol](top);
+				}
 			}
 		},
     ignore: function(fn){
@@ -93,6 +99,7 @@ var ObservationRecorder = {
             traps: null,
             keyDependencies: new Map(),
             valueDependencies: new Set(),
+						//childDependencies: new Set(),
             ignore: 0
         };
     },
