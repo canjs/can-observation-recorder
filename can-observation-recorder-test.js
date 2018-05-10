@@ -32,3 +32,13 @@ QUnit.test('start returns the same deps as stop', function(){
     QUnit.equal(dependencies0Start, dependencies0Stop, "dependencies0Start is the same as dependencies0Stop");
 
 });
+
+QUnit.test("created adds a dependency to the childDependencies of the parent", function(){
+		var foo = function(){};
+
+		observationRecorder.start();
+		observationRecorder.created(foo);
+		var dependencies = observationRecorder.stop();
+
+		QUnit.ok(dependencies.childDependencies.has(foo), "dependencies has foo in the child deps");
+});
