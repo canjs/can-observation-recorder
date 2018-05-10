@@ -1,5 +1,4 @@
 var namespace = require("can-namespace");
-var canSymbol = require("can-symbol");
 
 // Contains stack of observation records created by pushing with `.start`
 // and popping with `.stop()`.
@@ -7,22 +6,19 @@ var canSymbol = require("can-symbol");
 // to `ObservationRecorder.add` get added to.
 var stack = [];
 
-var addParentSymbol = canSymbol.for("can.addParent");
-
 var ObservationRecorder = {
     stack: stack,
     start: function(){
     	var deps = {
             keyDependencies: new Map(),
             valueDependencies: new Set(),
-						childDependencies: new Set(),
 
             // `traps` and `ignore` are here only for performance
             // reasons. They work with `ObservationRecorder.ignore` and `ObservationRecorder.trap`.
             traps: null,
-            ignore: 0
+            ignore: 0    		
     	};
-
+    	
         stack.push(deps);
 
         return deps;
@@ -66,15 +62,6 @@ var ObservationRecorder = {
     		}
     	}
     },
-		created: function(obs){
-			var top = stack[stack.length - 1];
-			if(top) {
-				top.childDependencies.add(obs);
-				if(obs[addParentSymbol]) {
-					obs[addParentSymbol](top);
-				}
-			}
-		},
     ignore: function(fn){
     	return function(){
     		if (stack.length) {
@@ -99,7 +86,6 @@ var ObservationRecorder = {
             traps: null,
             keyDependencies: new Map(),
             valueDependencies: new Set(),
-						//childDependencies: new Set(),
             ignore: 0
         };
     },
