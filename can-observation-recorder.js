@@ -17,9 +17,10 @@ var ObservationRecorder = {
             valueDependencies: new Set(),
 						childDependencies: new Set(),
 
-            // `traps` and `ignore` are here only for performance
+            // `bindings`, `traps` and `ignore` are here only for performance
             // reasons. They work with `ObservationRecorder.ignore` and `ObservationRecorder.trap`.
-            traps: null,
+						bindings: null,
+						traps: null,
             ignore: 0
     	};
 
@@ -53,7 +54,6 @@ var ObservationRecorder = {
     		}
     	}
     },
-
     addMany: function(observes){
         var top = stack[stack.length-1];
     	if (top) {
@@ -122,6 +122,16 @@ var ObservationRecorder = {
     		return function(){return [];};
     	}
     },
+		addBindings: function(bindings) {
+			var top = stack[stack.length - 1];
+			if(top) {
+				var curBindings = top.bindings;
+				if(!curBindings) {
+					curBindings = top.bindings = [];
+				}
+				curBindings.push(bindings);
+			}
+		},
     trapsCount: function(){
     	if (stack.length) {
     		var top = stack[stack.length-1];
