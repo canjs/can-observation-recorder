@@ -13,7 +13,7 @@ in a value being read.
 
 `can-observation-recorder` exports an object with the following methods:
 
-```
+```js
 {
     start()  // Starts recording ObservationRecorder.add calls and
              // returns an ObservationRecord representing
@@ -37,22 +37,22 @@ in a value being read.
 - It allows observable values, when read, to specify how to listen to changes in the
   value being read.  
   ```js
-ObservationRecorder.add( map, "value" );
+  ObservationRecorder.add( map, "value" );
 
-ObservationRecorder.add( simpleValue );
-```
+  ObservationRecorder.add( simpleValue );
+  ```
 - Record all calls to `ObservationRecorder.add` between [can-observation-recorder.start] and
   [can-observation-recorder.stop]:
   ```js
-ObservationRecorder.start();
-ObservationRecorder.add( person, "age" );
-ObservationRecorder.add( fullName );
-const observationRecord = ObservationRecorder.stop();
-observationRecord; //-> {
-//  keyDependencies:   Map{ person: Set[age] },
-//  valueDependencies: Set[fullName]
-//}
-```
+  ObservationRecorder.start();
+  ObservationRecorder.add( person, "age" );
+  ObservationRecorder.add( fullName );
+  const observationRecord = ObservationRecorder.stop();
+  observationRecord; //-> {
+  //  keyDependencies:   Map{ person: Set[age] },
+  //  valueDependencies: Set[fullName]
+  //}
+  ```
 
 @body
 
@@ -186,7 +186,7 @@ const observationRecord = ObservationRecorder.stop();
 
 `observationRecord` would contain the following:
 
-```
+```js
 {
     keyDependencies: Map{
         [observableKeyValues]: Set["propA", "propB"],
