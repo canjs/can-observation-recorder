@@ -8,7 +8,8 @@ var canSymbol = require("can-symbol");
 // to `ObservationRecorder.add` get added to.
 var stack = [];
 
-var addParentSymbol = canSymbol.for("can.addParent");
+var addParentSymbol = canSymbol.for("can.addParent"),
+	getValueSymbol = canSymbol.for("can.getValue");
 
 var ObservationRecorder = {
 	stack: stack,
@@ -88,6 +89,20 @@ var ObservationRecorder = {
 				return fn.apply(this, arguments);
 			}
 		};
+	},
+	peekValue: function(value) {
+		if(!value || !value[getValueSymbol]) {
+			return value;
+		}
+		if (stack.length) {
+			var top = stack[stack.length - 1];
+			top.ignore++;
+			var res = value[getValueSymbol]();
+			top.ignore--;
+			return res;
+		} else {
+			return value[getValueSymbol]();
+		}
 	},
 	isRecording: function() {
 		var len = stack.length;
