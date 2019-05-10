@@ -2,6 +2,7 @@
 @parent can-observables
 @collection can-infrastructure
 @group can-observation-recorder/methods methods
+@package ../package.json
 
 @description Specify how to listen to changes in a value being read and record
 those specifications between two points in time.
